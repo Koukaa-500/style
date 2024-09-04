@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;margin-left: -30px;">Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="profile-container">
+    <ion-avatar class="profile-avatar">
+      <img [src]="user.profilePic" alt="Profile Picture" />
+    </ion-avatar>
+    <h2>{{user.name}}</h2>
+    <ion-button fill="clear" class="edit-button" (click)="goToEdit()">
+      <ion-icon name="pencil-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <ion-list lines="none" >
+    <ion-item (click)="goToCustomerService()">
+      <ion-icon slot="start" name="headset-outline"></ion-icon>
+      <ion-label>Customer Service</ion-label>
+    </ion-item>
+    <ion-item (click)="goToNotification()">
+      <ion-icon slot="start" name="notifications-outline"></ion-icon>
+      <ion-label>Notification</ion-label>
+    </ion-item>
+    <ion-item (click)="goToSettings()">
+      <ion-icon slot="start" name="settings-outline"></ion-icon>
+      <ion-label>Settings</ion-label>
+    </ion-item>
+    <ion-item (click)="goToLanguage()">
+      <ion-icon slot="start" name="globe-outline"></ion-icon>
+      <ion-label>Language</ion-label>
+    </ion-item>
+  </ion-list>
+
+ 
+</ion-content>

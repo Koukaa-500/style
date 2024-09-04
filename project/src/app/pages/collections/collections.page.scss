@@ -1,0 +1,265 @@
+ion-item {
+    --background: transparent;
+    --border-color: transparent;
+  }
+  
+  ion-card {
+    --box-shadow: none;
+    --background: transparent;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  
+  .card-image-container img {
+    border-radius: 20px;
+  }
+  
+  ion-header {
+    --background: #ffffff;
+    border-bottom: 1px solid #d9d9d9;
+  }
+  
+  ion-toolbar {
+    --background: #ffffff;
+    
+  }
+  .title{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    h2 {
+      
+      margin-left: 4rem;
+      font-weight: bold;
+      color: #333333;
+      
+    }
+  }
+  
+  
+  .add-collection-container {
+    padding: 1rem;
+    text-align: left;
+    height: 5rem;
+    ion-button {
+        --border-radius: 25px;
+        --border-color: #d9d9d9;
+        --background: #f7f7f7;
+        --color: #333333;
+        width: 90%;
+        margin: 0 auto;
+        text-transform: capitalize;
+        height: 3rem;
+      }
+    img{
+        width: 1.5rem; /* Adjust size of the image */
+        height: 1.5rem;
+        margin-right: 1rem; /* Space between icon and text */
+        display: inline-block;
+        vertical-align: middle;
+    } 
+  }
+  
+  ion-footer {
+  
+    background-color: rgba(157, 156, 156, 0.1);
+    padding-bottom: 6px;
+    padding-right: 8px;
+    width: 90%; 
+    margin: 0 0 5px 20px; 
+    
+    border-radius: 30px;
+    
+  }
+  .footer-container {
+    width: 90%; 
+    margin: 0 0 0 40px; 
+    height: 50px; 
+    
+    border-radius: 30px; 
+    
+    ion-icon{
+      opacity: 1;
+    }
+  }
+  .footer-container ion-button.active ion-icon {
+    color: #006466;
+  }
+  ion-icon {
+    color: #333333;
+    font-size: 1.5rem;
+  }
+  
+  ion-searchbar {
+    --box-shadow:none;
+    --background:#f3f3f3;
+    --border-radius:1.2rem;
+    --placeholder-font-weight:400;
+    --placeholder-opacity:0.2;
+    width: 70vw;
+    height: 2rem;
+    left: 1.6rem;
+    padding:0;
+    margin-right: 15px;
+  }
+  .searchbar-custom-content {
+    display: flex;
+    align-items: center;
+    margin-right: 100px; /* Adjust the spacing to your liking */
+  }
+  
+  .clear-icon {
+    position: absolute;
+    right: 3rem; /* Adjust this value as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .searchbar-custom-content ion-icon {
+    color: #333333;
+    font-size: 1.5rem;
+  }
+
+  .camera-icon{
+    width: 2rem;
+    margin-left: 1rem;
+  }
+
+  .editModal{
+    margin-top: 10px;
+    ion-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    ion-label {
+      margin-top: 0.5rem; /* Add space between the icon and the label */
+      font-size: 14px; /* Adjust font size as needed */
+      color: #000; /* Adjust color as needed */
+    }
+    
+    ion-button {
+      margin: 0;
+      background: #F8F8F8;
+      border-radius: 50%; /* Ensure buttons don't have extra margin */
+    }
+    img{
+      width: 1.8rem;
+    }
+  }
+
+  /* CSS to style ion-checkbox as a circle and position it */
+.collection-checkbox {
+  --border-radius: 50%; /* Makes the checkbox a circle */
+  position: absolute;
+  top: -40px; /* Adjust this value to position the checkbox vertically */
+  right: 20px; /* Adjust this value to position the checkbox horizontally */
+  z-index: 10; /* Ensure the checkbox is above other elements */
+  border-color: #006466;
+}
+
+ion-checkbox .checkbox-icon {
+  border-color: #006466; /* Default border color */
+}
+
+ion-checkbox[checked] .checkbox-icon {
+  background-color: #006466; /* Green background when checked */
+  border-color: #006466; /* Green border when checked */
+}
+
+ion-checkbox[checked] .checkbox-inner {
+  background-color: #006466; /* Green check mark background */
+}
+.newCollection{
+ion-item{
+  --padding-start: 10; 
+  --padding-end: 0; 
+}
+
+  ion-input{
+    width: 90vw;
+    height: 2rem;
+    border-radius: 16px;
+    background-color: #f3f3f3; 
+    padding-left: 15px !important;
+    margin-top: 2rem;
+    left:10px;
+   }
+  .image-container {
+    position: relative;
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    margin: 0 auto; /* Center horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-preview {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* Ensures image scales properly */
+  }
+  
+  .image-overlay {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #e0e0e0; /* Light background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-overlay ion-icon {
+    font-size: 40px; /* Adjust icon size as needed */
+    color: #9e9e9e; /* Adjust icon color as needed */
+  }
+
+ /* Ensure the button container is centered */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem; /* Adjust margin as needed */
+  height: 3rem;
+  width: 7rem;
+  margin-left: 9rem;
+}
+
+/* Style each button */
+.custom-button {
+  border-radius: 20px; /* Border radius for rounded corners */
+  background-color: #006466; /* Green background color */
+  color: white; /* White text color */
+  margin: 0 0.5rem; /* Space between buttons */
+  height: 2rem;
+  width: 4rem;
+  text-transform: capitalize;
+}
+
+/* Optional: Style for button hover effect */
+.custom-button:hover {
+  background-color: #006466; /* Darker green on hover */
+}
+
+.custom-button1 {
+  border-radius: 20px; /* Border radius for rounded corners */
+  background-color: #006466; /* Green background color */
+  color: white; /* White text color */
+  margin: 0 0.5rem; /* Space between buttons */
+  height: 2rem;
+  width: 6rem;
+  text-transform: capitalize;
+}
+
+/* Optional: Style for button hover effect */
+.custom-button1:hover {
+  background-color: #006466; /* Darker green on hover */
+}
+
+}
+
+

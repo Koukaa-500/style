@@ -1,0 +1,16 @@
+<ion-card (click)="onCardClick()">
+  <div class="card-image-container">
+    <img [src]="collection.imageUrl" />
+    <div class="card-text">
+      <h2>{{ collection.type }}</h2>
+      <p>{{ collection.number }} Collection</p>
+    </div>
+    <ion-checkbox
+      *ngIf="isSelectionMode"
+      slot="start"
+      [(ngModel)]="collection.selected"
+      (ionChange)="toggleSelection(collection)"
+      class="collection-checkbox"
+    ></ion-checkbox>
+  </div>
+</ion-card>

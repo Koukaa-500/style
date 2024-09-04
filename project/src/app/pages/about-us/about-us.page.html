@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; margin-left: -30px;">About Us</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="about-section">
+    <div class="about-item">
+      <ion-icon name="bulb-outline" class="about-icon"></ion-icon>
+      <h2>CLOTHING <span class="highlight">SEARCH ENGINE</span></h2>
+      <p>
+        The search engine helps to find listed clothing items on different e-commerce websites based on keyword or image search.
+      </p>
+    </div>
+
+    <div class="about-item">
+      <ion-icon name="shirt-outline" class="about-icon"></ion-icon>
+      <h2>PERSONALIZED <span class="highlight">RECOMMENDATIONS</span></h2>
+      <p>
+        The artificial-intelligence based recommendation system suggests relevant items to the shopper based on search keywords, uploaded pictures, preferences, previous search and purchase history.
+      </p>
+    </div>
+
+    <div class="about-item">
+      <ion-icon name="megaphone-outline" class="about-icon"></ion-icon>
+      <h2>CLIENT <span class="highlight">TRY-ON</span></h2>
+      <p>
+        The virtual try-on allows shoppers to see how the clothes would look on them and compare various options simultaneously.
+      </p>
+    </div>
+  </div>
+</ion-content>

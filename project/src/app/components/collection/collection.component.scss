@@ -1,0 +1,34 @@
+ion-card {
+    height: 7rem;
+    border-radius: 20px;
+    background: transparent; /* Set the background to transparent */
+    padding: 0;
+    overflow: hidden; /* Ensure content stays within the card boundaries */
+    width: 21rem;
+  }
+  
+  .card-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+  }
+  
+  .card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+  }
+
+  .card-text {
+    position: absolute;
+    bottom: 0; /* Align text at the bottom of the container */
+    left: 0; /* Align text to the left */
+    width: 100%; /* Full width to cover the container */
+    color: #006466; /* Text color */
+    padding: 10px 10px 30px 10px; /* Padding for better spacing */
+    font-weight: 10px;
+  }
+
+  

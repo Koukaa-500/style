@@ -1,0 +1,49 @@
+<ion-content>
+  <br>
+  <div class="signup-container" style="margin-top:50px;">
+    <ion-avatar class="avatar" (click)="uploadImage()">
+      <img [src]="avatarSrc" alt="Profile Avatar">
+    </ion-avatar>
+    <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
+
+   
+    <ion-list lines="none" >
+      <ion-item [ngStyle]="!(emptyName || invalidstructureName) ? {'margin-bottom': '16px'} : {}">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input  [(ngModel)]="name" placeholder="Name" type="text"></ion-input>
+      </ion-item>
+      <ion-text style="color:#FF3B3B" class="error-message" *ngIf="emptyName">Empty name !</ion-text>
+
+      <ion-item [ngStyle]="!(emptyEmail || invalidstructureEmail) ? {'margin-bottom': '16px'} : {}">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input  [(ngModel)]="email" placeholder="Email" type="email"></ion-input>
+      </ion-item>
+      <ion-text style="color:#FF3B3B" class="error-message" *ngIf="emptyEmail">Empty email !</ion-text>
+      <ion-text style="color:#FF3B3B" class="error-message" *ngIf="invalidstructureEmail">Invalid email structure !</ion-text>
+      <ion-item [ngStyle]="!(emptyPassword) ? {'margin-bottom': '6px'} : {}">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" placeholder="Password"></ion-input>
+        <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+      </ion-item>
+      <ion-text style="color:#FF3B3B" class="error-message" *ngIf="emptyPassword">Empty password !</ion-text>
+    </ion-list>
+    <ion-text style="color:#FF3B3B" class="error-message" *ngIf="wrongPassword">Wrong Password. Try again or click Forget Password to reset it</ion-text>
+    <ion-item [ngStyle]="!(emptyPhoneNumber || invalidstructurePhone) ? {'margin-bottom': '16px'} : {}">
+      <ion-icon name="call-outline" slot="start"></ion-icon>
+      <ion-input  [(ngModel)]="phoneNumber" placeholder="Phone number" type="text"></ion-input>
+    </ion-item>
+    <ion-text style="color:#FF3B3B;margin-bottom: 10px;" class="error-message" *ngIf="emptyPhoneNumber">Empty phone number !</ion-text>
+    <ion-text style="color:#FF3B3B;margin-bottom: 10px;" class="error-message" *ngIf="invalidstructurePhone">Invalid phone number structure !</ion-text>
+    <ion-button style="width: 84%; margin: 0 auto; display: block;" (click)="checkForm()">Signup</ion-button>
+    <div class="login-link">
+      <p>Already have an account? <a routerLink='/login'>Log In</a></p>
+    </div>
+
+    <div class="social-login">
+      <p style="margin: 5px; font-family: 'Arial', sans-serif;">or sign up with</p>
+      <img src="../../../assets/icon/facebook-circle-logo-png.png" style="width: 2.2rem; margin-right: 10px;"
+        (click)="sentToFacebook()" alt="Facebook">
+      <img src="../../../assets/icon/googlee.png" style="margin-top: 2px;" (click)="sentToGoogle()" alt="Google">
+    </div>
+  </div>
+</ion-content>

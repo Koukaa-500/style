@@ -1,0 +1,29 @@
+<ion-card>
+  <div class="card-content">
+    <div class="card-image-container">
+      <img [src]="article.imageUrl" />
+    </div>
+    <div class="card-details">
+      <ion-text>
+        <h3 class="brand">{{ article.brand }}</h3>
+        <h4 class="description">{{ article.description }}</h4>
+        <div class="price-container">
+          <h3 class="price">{{ article.price }} QAR</h3>
+          <h3 class="old-price">100 QAR</h3>
+        </div>
+      </ion-text>
+    </div>
+    <ion-icon 
+      [name]="article.isFavorite ? 'heart' : 'heart-outline'" 
+      class="heart-icon" 
+      [style.color]="article.isFavorite ? '#00A1A4' : 'inherit'"
+      (click)="toggleFavorite($event, article)">
+    </ion-icon>
+    
+    <img src="../../../assets/icon/collectionIcon.png"
+       
+      class="lock-icon"
+      (click)="sendToCollection()">
+    
+  </div>
+</ion-card>

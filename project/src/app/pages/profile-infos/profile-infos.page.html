@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;margin-left: -30px;">Update Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="profile-container">
+    <ion-avatar class="profile-avatar">
+      <img [src]="user.profilePic" alt="Profile Picture" />
+    </ion-avatar>
+    <h2>{{user.name}}</h2>
+    <ion-button [ngStyle]="emptyname?{'margin-top': '-14%'}:{'margin-top': '-20%'}" fill="clear" class="edit-button" (click)="uploadImage()">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-button>
+    <input type="file" id="filesssInput" (change)="onFileSelected($event)" hidden>
+  </div>
+
+  <ion-list lines="none" class="profile-list">
+    <ion-item [ngStyle]="!emptyname? {'margin-bottom': '15px'} : {}">
+      <ion-icon slot="start" name="person-outline"></ion-icon>
+      <ion-input placeholder="enter your name" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-text style="margin-left: 4%;" color="danger" class="error-message" *ngIf="emptyname">Empty name !</ion-text>
+    <ion-item [ngStyle]="!(emptyemail || wrongemail)? {'margin-bottom': '15px'} : {}">
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
+      <ion-input placeholder="enter your email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-text style="margin-left: 4%;" color="danger" class="error-message" *ngIf="emptyemail">Empty email !</ion-text>
+    <ion-text style="margin-left: 4%;" color="danger" class="error-message" *ngIf="wrongemail">Invalid email structure !</ion-text>
+    <ion-item [ngStyle]="!emptyphone? {'margin-bottom': '15px'} : {}">
+      <ion-icon slot="start" name="call-outline"></ion-icon>
+      <ion-input placeholder="enter your phone" [(ngModel)]="user.phone"></ion-input>
+    </ion-item>
+    <ion-text style="margin-left: 4%;" color="danger" class="error-message" *ngIf="emptyphone">Empty phone !</ion-text>
+    <ion-item [ngStyle]="!(emptydate || wrongdate)? {'margin-bottom': '15px'} : {}">
+      <ion-icon slot="start" name="calendar-outline"></ion-icon>
+      <ion-input placeholder="Mm/Dd/Yyyy" [(ngModel)]="user.date_nai"></ion-input>
+    </ion-item>
+    <ion-text style="margin-left: 4%;" color="danger" class="error-message" *ngIf="emptydate">Empty date !</ion-text>
+    <ion-text style="margin-left: 4%;" color="danger" class="error-message" *ngIf="wrongdate">Invalid date structure !</ion-text>
+  </ion-list>
+
+  <div class="gender-container">
+    <ion-radio-group class="radio-group" [(ngModel)]="user.genre">
+      <ion-item>
+        <ion-label>Female</ion-label>
+        <ion-radio style="color: #006466;"  slot="start" value="female"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Male</ion-label>
+        <ion-radio style="color: #006466;" slot="start" value="male"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+
+  <ion-button class="updateButton" style="width: 84%; margin: 0 auto; display: block;" (click)="update()" >Update Profile</ion-button>
+  
+</ion-content>

@@ -1,0 +1,251 @@
+<ion-toolbar>
+  <div class="title">
+  <ion-buttons slot="start" style="height: 2rem;">
+    <ion-button (click)="sendToHome()">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-button>
+    <h3>Wardrobe</h3>
+  </ion-buttons>
+  
+</div>
+  
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchText" placeholder="Search" class="custom-searchbar">
+      
+      <ion-icon name="close-circle" class="clear-icon" *ngIf="searchText" (click)="clearSearch()"></ion-icon>
+    </ion-searchbar>
+    
+    <ion-buttons slot="end">
+      <!-- Button to trigger Option Collection Modal -->
+      <ion-button id="option-collection-modal-trigger" (click)="presentModal()" >
+        <ion-icon name="options-outline"></ion-icon>
+      </ion-button>
+    
+      <!-- Button to trigger Filtre Collection Modal -->
+      <ion-button id="filtre-collection-modal-trigger" (click)="presentOptionModal()">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-toolbar>
+
+  <div class="button-group">
+    <button 
+      class="segment-button" 
+      [ngClass]="{ 'active-button': selectedGender === 'women' }" 
+      (click)="selectedGender = 'women'">
+      Women
+    </button>
+    <button 
+      class="segment-button" 
+      [ngClass]="{ 'active-button': selectedGender === 'men' }" 
+      (click)="selectedGender = 'men'">
+      Men
+    </button>
+  </div>
+  
+
+
+
+
+  <ion-content>
+    <ion-list class="grid-list" cdkDropList (cdkDropListDropped)="onDrop($event)"
+      [cdkDropListDisabled]="!isDragAndDropEnabled">
+      <ion-item *ngFor="let category of filteredCategories; let i = index" cdkDrag [cdkDragData]="category">
+        <!-- Show checkbox in selection mode -->
+        <ion-checkbox *ngIf="isSelectionMode" slot="start" [(ngModel)]="category.selected"
+          (click)="toggleSelection($event)" class="collection-checkbox"></ion-checkbox>
+        <app-category [category]="category" [isSelectionMode]="isSelectionMode" (cardClicked)="handleCardClick($event)"
+          (cardClicked)="onCategoryClick($event)"></app-category>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+
+<ion-modal id="filtre-collection-modal" [isOpen]="isModalOpen" (didDismiss)="closeModal()" [initialBreakpoint]="0.3" [breakpoints]="[0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content>
+
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label  style="color: #D9D9D9;opacity: 1;">Sort by</ion-label>
+        </ion-item>
+        <div style="margin-left: 1rem;">
+        <ion-item button (click)="setSortOption('AtoZ')">
+          <ion-label>A to Z</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Last Saved to</ion-label>
+        </ion-item>
+        <ion-item button (click)="toggleDragAndDrop()">
+          {{ isDragAndDropEnabled ? 'Disable Drag-and-Drop' : 'Enable Drag-and-Drop' }}
+          <ion-label></ion-label>
+        </ion-item>
+      </div>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- Option Collection Modal -->
+<ion-modal id="option-collection-modal" [isOpen]="isOptionModalOpen" (didDismiss)="closeModal()" [initialBreakpoint]="0.2" [breakpoints]="[0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content>
+
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label style="color: #D9D9D9;opacity: 1;">Options</ion-label>
+        </ion-item>
+        <div style="margin-left: 1rem;">
+        <ion-item>
+          <ion-label button id-trigger="edit-collection-modal-trigger" (click)="presentEditModal()">Edit</ion-label>
+        </ion-item>
+        <ion-item button (click)=" openCreateModal()">
+          <ion-label>New Collection</ion-label>
+        </ion-item>
+      </div>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<!-- Edit Collection Modal -->
+<!-- Edit Collection Modal -->
+<ion-modal id="edit-collection-modal" [isOpen]="isEditModalOpen" (didDismiss)="closeModal()" [initialBreakpoint]="0.14" [breakpoints]="[0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content class="editModal">
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <!-- Move Button -->
+          <ion-col size="3" class="ion-text-center" style="margin-right: 1rem;">
+            <ion-button fill="clear" (click)="moveCategory()">
+              <img src="../../../assets/icon/move.png" alt="">
+            </ion-button>
+            <ion-label>Move</ion-label>
+          </ion-col>
+
+          <!-- Rename Button -->
+          <ion-col size="3" class="ion-text-center" style="margin-right: 1rem;">
+            <ion-button fill="clear" (click)="presentRenameModal()">
+              <img src="../../../assets/icon/rename.png" alt="">
+            </ion-button>
+            <ion-label>Rename</ion-label>
+          </ion-col>
+
+          <!-- Delete Button -->
+          <ion-col size="3" class="ion-text-center">
+            <ion-button fill="clear" (click)="deleteCategory()">
+              <img src="../../../assets/icon/delete.png" alt="">
+            </ion-button>
+            <ion-label>Delete</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  id="rename-collection-modal"
+  [isOpen]="isRenameModalOpen"
+  [initialBreakpoint]="0.5"
+  [breakpoints]="[0.25, 0.5, 0.75]"
+  (didDismiss)="closeModal()"
+>
+  <ng-template>
+    <ion-content class="newCollection">
+      
+        <ion-toolbar>
+          <h1 class="ion-text-center">Rename Collection</h1>
+        </ion-toolbar>
+      
+      <ion-content>
+        <ion-item>
+  
+          <ion-input style="margin-left: 0.5rem;" [(ngModel)]="newCollectionName" placeholder="Enter new name"></ion-input>
+        </ion-item>
+        <div class="button-container">
+          <ion-buttons>
+            <ion-button expand="full" (click)="renameCategory()" class="custom-button1">Rename</ion-button>
+          </ion-buttons>
+        </div>
+        
+      </ion-content>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  id="create-collection-modal"
+  [isOpen]="isCreateModalOpen"
+  [initialBreakpoint]="0.7"
+  [breakpoints]="[0.25, 0.5, 0.75]"
+  (didDismiss)="closeModal()"
+>
+  <ng-template>
+    <ion-toolbar>
+      <h1 class="ion-text-center">New Collection</h1>
+    </ion-toolbar>
+
+    <ion-content class="newCollection">
+      <form [formGroup]="categoryForm">
+        <ion-list lines="none">
+          <h3 class="ion-text-center">Select Image</h3>
+          <ion-item>
+            <div class="image-container" (click)="triggerFileInput()">
+              <ion-img
+                [src]="selectedImageUrl"
+                class="image-preview"
+                *ngIf="selectedImageUrl"
+              ></ion-img>
+              <div class="image-overlay" *ngIf="!selectedImageUrl">
+                <ion-icon name="image-outline"></ion-icon>
+              </div>
+            </div>
+            <input type="file" (change)="onImageSelected($event)" #fileInput hidden />
+          </ion-item>
+
+          <!-- Gender Selection -->
+          <div lines="none" class="horizontal-radio-group">
+            <ion-radio-group formControlName="gender" class="gender-group">
+              <ion-list-header class="ion-text-center">
+                <h3>Select Gender</h3>
+              </ion-list-header>
+              <div class="radio-buttons-container">
+                <ion-item>
+                  <ion-label>Women</ion-label>
+                  <ion-radio slot="start" value="women"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Men</ion-label>
+                  <ion-radio slot="start" value="men"></ion-radio>
+                </ion-item>
+              </div>
+            </ion-radio-group>
+          </div>
+
+          <!-- Collection Name Input -->
+          <ion-item>
+            <ion-input
+              formControlName="name"
+              placeholder="Enter a category name"
+              style="padding-left: 10px;"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+      </form>
+
+      <div class="button-container">
+        <ion-buttons>
+          <ion-button (click)="closeCreateModal()" class="custom-button">
+            Cancel
+          </ion-button>
+          <ion-button (click)="createNewCategory()" class="custom-button">
+            Save
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

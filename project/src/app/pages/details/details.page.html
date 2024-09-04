@@ -1,0 +1,181 @@
+<ion-content>
+  <ion-row *ngIf="article">
+    <ion-card>
+      <div class="card-image-container">
+        <img [src]="photo ? photo : article.imageUrl" />
+        <ion-icon name="arrow-back" class="arrow-icon" (click)="sendToHome()"></ion-icon>
+        <ion-icon [name]="article.isFavorite ? 'heart' : 'heart-outline'" class="heart-icon"
+          [style.color]="article.isFavorite ? '#00A1A4' : 'inherit'" (click)="toggleFavorite(article)">
+        </ion-icon>
+      </div>
+    </ion-card>
+    <div class="container">
+      <ion-row class="text-row">
+        <ion-col size="3" class="ion-text-left">
+          <a style="color: #00A1A4;">{{ article.brand }}</a>
+        </ion-col>
+        <ion-col size="9">
+          <a style="color: #000000; font-weight: 500;margin-left:170px">{{ article.price }} QAR</a>
+        </ion-col>
+      </ion-row>
+      <ion-row class="price-row">
+        <ion-col>
+          <a style="font-size: 15px;">{{ article.description }}</a>
+        </ion-col>
+      </ion-row>
+      <ion-row class="color-row">
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label>Color</ion-label>
+          </ion-item>
+          <div class="chip-container">
+            <ion-chip 
+              *ngFor="let color of article.colors" 
+              [style.background-color]="color" 
+              (click)="selectColor(color)" 
+              [class.selected]="selectedColor === color">
+              <ion-label></ion-label>
+            </ion-chip>
+          </div>
+        </ion-col>
+      </ion-row>
+      
+
+      <ion-row class="size-row">
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label>Size</ion-label>
+          </ion-item>
+          <div class="chip-container">
+            <ion-chip *ngFor="let size of sizes" 
+                      (click)="selectSize(size)"
+                      [ngClass]="{'selected-chip': selectedSize === size}">
+              <ion-label>{{ size }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-col>
+      </ion-row>
+      
+      
+      <ion-row class="button-row">
+        <ion-col size="auto">
+          <ion-chip (click)="takePicture()">
+            <ion-label>Try</ion-label>
+          </ion-chip>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-chip (click)="addToCollection()">
+            <ion-label>Add To Collection</ion-label>
+          </ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip id="bottom-modal-trigger" (click)="presentModal()"
+            style="background-color: #006466; align-items: center; height: 2rem;">
+            <ion-icon name="paper-plane-outline" style="margin-right: 5px; color: white;"></ion-icon>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+
+    </div>
+    <ion-modal id="bottom-modal" [isOpen]="isModalOpen" (didDismiss)="closeModal()" [initialBreakpoint]="0.48"
+      [breakpoints]="[0.25, 0.5, 0.75]"> <ng-template>
+        <ion-content class="ion-padding">
+          <div class="share-container">
+            <h2>Send In Style</h2>
+
+            <ion-row style="gap: 10px;">
+              <ion-col style="text-align: center;">
+                <ion-button id="search-modal-trigger" (click)="presentSearchModal()" fill="clear"
+                  style="background-color: rgba(141, 137, 137, 0.1); border-radius: 50%; width: 4rem; height: 4rem;margin: 0 auto;">
+                  <img src="../../../assets/icon/search.png"
+                    style="width: 90%; height: 70%; object-fit: cover; border-radius: 50%;">
+                </ion-button>
+                <ion-label style="display: block; text-align: center; margin-top: 8px;">Search</ion-label>
+              </ion-col>
+
+              <ion-col *ngFor="let person of (people | slice:0:3)" style="text-align: center;">
+                <ion-button fill="clear"
+                  style="background-color: #D9D9D9; border-radius: 50%; width: 4rem; height: 4rem; margin: 0 auto;">
+                  <ion-avatar slot="icon-only" style="width: 100%; height: 100%;">
+                    <img [src]="person.imageUrl" style="width: 100%; height: 100%; object-fit: fill;">
+                  </ion-avatar>
+                </ion-button>
+
+                <ion-label style="display: block; text-align: center; margin-top: 8px;">{{ person.name }}</ion-label>
+              </ion-col>
+            </ion-row>
+            <!-- irik@gmail.com -->
+
+            <h2>Share On</h2>
+            <ion-row>
+              <ion-col *ngFor="let platform of platforms">
+                <ion-button fill="clear"
+                  style="background-color: rgba(70, 69, 69, 0.1); border-radius: 50%; width: 3rem; height: 3rem; margin-left: 10px;">
+                  <ion-avatar slot="icon-only" style="width: 100%; height: 100%;">
+                    <img [src]="platform.icon" class="platformicon">
+                  </ion-avatar>
+                </ion-button>
+                <ion-label style="text-align: left;">{{ platform.name }}</ion-label>
+
+              </ion-col>
+            </ion-row>
+
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+
+
+    <ion-modal id="search-modal" [isOpen]="isSearchOpen" (didDismiss)="closeModal()" [initialBreakpoint]="0.48"
+      [breakpoints]="[0.25, 0.5, 0.75]">
+      <ng-template>
+        <ion-content class="ion-padding">
+          <div class="share-container">
+            <ion-searchbar [(ngModel)]="searchText" placeholder="Search">
+              <div class="searchbar-custom-content" slot="end">
+                <ion-icon name="close-circle" class="clear-icon" *ngIf="searchText" (click)="clearSearch()"></ion-icon>
+              </div>
+            </ion-searchbar>
+
+            <ion-row style="gap: 10px;">
+              <ion-col *ngFor="let person of (people | search: searchText)" style="text-align: center;">
+                <ion-button fill="clear" class="sendCollectionButton" (click)="toggleSelection(person.id)"
+                  [ngClass]="{'selected-border': isSelected(person.id)}">
+                  <ion-avatar slot="icon-only" style="width: 100%; height: 100%;">
+                    <img [src]="person.imageUrl" class="avatar-image">
+                  </ion-avatar>
+                </ion-button>
+
+                <ion-label style="display: block; text-align: center; margin-top: 8px;">{{ person.name }}</ion-label>
+              </ion-col>
+            </ion-row>
+
+            <ion-col style="display: flex; justify-content: center;">
+              <ion-button fill="clear" style="text-transform: capitalize;" (click)="closeModal()">
+                <ion-chip style="
+                  background-color: #006466;
+                  height: 3rem; 
+                  width: 8rem; 
+                  display: flex; 
+                  align-items: center; 
+                  justify-content: center;
+                  border-radius: 25px;
+                ">
+                  <span style="color: white; font-size: 1rem;">Send</span>
+                  <ion-icon name="paper-plane-outline" style="
+                    margin-left: 5px; 
+                    color: white;
+                    font-size: 1.2rem;
+                  "></ion-icon>
+                </ion-chip>
+              </ion-button>
+            </ion-col>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+
+  </ion-row>
+</ion-content>

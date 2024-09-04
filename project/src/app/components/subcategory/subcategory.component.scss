@@ -1,0 +1,38 @@
+ion-card {
+    height: 12rem;
+    border-radius: 30px;
+    background: transparent; /* Set the background to transparent */
+    padding: 0;
+    overflow: hidden; /* Ensure content stays within the card boundaries */
+    
+  }
+  
+  .card-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .heart-icon {
+      position: absolute;
+      top: 10px; /* Adjust as needed */
+      right: 10px; /* Adjust as needed */
+      font-size: 24px; /* Adjust size as needed */
+      color: #00A1A4; /* Adjust color as needed */
+      font-weight: bold;
+      border-color:#00A1A4 ;
+    }
+  }
+  
+  .card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  ion-text a{
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  

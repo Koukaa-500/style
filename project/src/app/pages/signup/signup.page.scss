@@ -1,0 +1,235 @@
+.signup-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height:100vh
+  }
+
+  p {
+    color: #7e7e7e;
+  }
+  
+  .avatar {
+    
+    width: 116px;
+    height: 116px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+  
+  form {
+    ion-item {
+      margin-bottom: 15px;
+      border-radius: 30px;
+      height: 50px;
+      --background: #f1f3f4;
+      
+    }
+  
+    ion-input {
+      color: black;
+    }
+  
+    ion-icon {
+      
+      color: #006466;
+      font-size: 1.51rem;
+    }
+  
+    ion-button {
+      margin-top: 20px;
+      background-color: #006466;
+    }
+
+    
+  }
+
+ 
+
+
+
+  
+  .login-link,
+  .social-login {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    margin-bottom: 16%;
+  }
+  
+  .social-login ion-icon {
+    margin: 0 10px;
+    color: #006466;
+  }
+  
+  .social-login p {
+    margin-bottom: 10px;
+  }
+  
+  a{
+    text-decoration: none;
+    color: #006466;
+  }
+  
+  
+  
+  .signupButton {
+    --background: #006466;
+    --border-radius: 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+   
+    text-align: center;
+    text-decoration: none;
+    width: 19rem;
+    height: 30px;
+    margin-left:25px ;
+  }
+  
+  .signupButton:hover {
+    background-color: darken(#006466, 10%);
+  }
+
+  .facebook-icon {
+    color: #1877F2; /* Facebook's official blue color */
+  }
+  
+  .google-icon {
+    color: #4285F4;
+
+  }
+
+
+  .social-login img{
+    width: 3rem;
+  }
+
+
+  .login-container {
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .logo {
+    width: 46%;
+    margin-bottom: 17%;
+  }
+  
+  h2 {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  
+  p {
+    color: #7e7e7e;
+  }
+  
+  .forgot-password-container {
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+  }
+ 
+  
+  ion-icon {
+    color: #006466;
+  }
+  
+  ion-item {
+    --background: #f5f5f5;
+    --border-radius: 12px;
+   
+  }
+  
+  ion-input {
+    color: black;
+  }
+  
+  ion-button {
+    --border-radius: 20px;
+    --background: #006466;
+    height: 43px;
+  }
+
+  ion-text.error-message {
+    text-align: left;
+    display: block;
+    margin-left: 15px; 
+
+  }
+  ion-text.error {
+    transform: translate(-5%);
+    text-align: center;
+    display: block;
+    margin-left: 15px; 
+  }
+  
+  ion-text {
+    font-size: 15px; 
+  }
+  
+  .forgot-password {
+    text-align: right;
+    color: #7e7e7e;
+    font-size: 14px;
+    margin-top: 3px; 
+    margin-bottom: 20px;
+  }
+  
+  .signup-text {
+    margin-top: 18px;
+    color: #7e7e7e;
+    font-size: 14px;
+    margin-bottom: 20%;
+  }
+  
+  .signup-text a {
+    color: #006466;
+    text-decoration: none;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .social-buttons ion-button {
+    --color: #7e7e7e;
+    margin: 0 8px;
+    --border-radius: 50%;
+    --background: transparent;
+    --icon-size: 24px;
+  }
+
+  .digit-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .digit-input {
+    width: 13%;
+    height: 46px;
+    margin-right: 20px;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .digit-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+  }
+  
+  

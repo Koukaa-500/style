@@ -1,0 +1,2 @@
+npm install @capacitor/assets --save-dev
+npx capacitor-assets generate

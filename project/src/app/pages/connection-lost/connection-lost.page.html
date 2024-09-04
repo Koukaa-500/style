@@ -1,0 +1,13 @@
+<ion-content class="ion-padding">
+  <div class="connection-lost-container">
+    <h2>Opps! Connection Lost</h2>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
+    <img src="../../../assets/icon/connectionlost.png" alt="Connection Lost" />
+    <ion-button expand="block" (click)="retryConnection()">Refresh</ion-button>
+  </div>
+
+  <div id="container">
+    <strong>Network Status</strong>
+    <div>{{networkStatus | json}}</div>
+  </div>
+</ion-content>

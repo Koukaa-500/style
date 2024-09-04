@@ -1,0 +1,16 @@
+<ion-card>
+  <div class="card-image-container">
+    <img [src]="article.imageUrl" />
+    <ion-icon 
+    [name]="article.isFavorite ? 'heart' : 'heart-outline'" 
+    class="heart-icon" 
+    [style.color]="article.isFavorite ? '#00A1A4' : 'inherit'"
+    (click)="toggleFavorite($event,article)"
+    >
+  </ion-icon>  </div>
+</ion-card>
+<ion-text>
+  <a style="color: #00A1A4;">{{ article.brand }}</a>
+  <a style="font-size: 12px;">{{ article.description }}</a>
+  <a style="color: #000000; font-weight: bold;">{{ article.price }} QAR</a>
+</ion-text>

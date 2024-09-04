@@ -1,0 +1,45 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button (click)="sendToHome()">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <h1 class="toolbar-title">Favorite</h1>
+</ion-toolbar>
+
+<ion-content>
+  <ion-list>
+    <!-- Filter the articles array to only show favorites -->
+    <ion-item *ngFor="let article of articles | favoriteFilter">
+      <app-favorite [article]="article"></app-favorite>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <div class="footer-container">
+    <ion-row>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'home'" (click)="sendToHome()">
+          <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'collections'" (click)="setActiveIcon('collections')" (click)="sendToCollection()">
+          <ion-icon slot="icon-only" name="grid-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'favorites'" (click)="goToFavorites()">
+          <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'profile'" (click)="goToProfile()">
+          <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-footer>

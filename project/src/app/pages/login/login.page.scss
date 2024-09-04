@@ -1,0 +1,130 @@
+.login-container {
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .logo {
+    width: 46%;
+    margin-bottom: 15%;
+  }
+  
+  h2 {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  
+  p {
+    color: #7e7e7e;
+  }
+  
+  .forgot-password-container {
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+  }
+ 
+  
+  ion-icon {
+    color: #006466;
+  }
+  
+  ion-item {
+    --background: #f5f5f5;
+    --border-radius: 12px;
+   
+  }
+
+  .custom-toast {
+    --background: #4CAF50; /* Choisis la couleur de fond que tu veux */
+    --color: white; /* Choisis la couleur du texte */
+  }
+  
+  
+  ion-input {
+    color: black;
+  }
+  
+  ion-button {
+    --border-radius: 20px;
+    --background: #006466;
+    height: 43px;
+  }
+
+  ion-text.error-message {
+    text-align: left;
+    display: block;
+    margin-left: 15px; 
+
+  }
+  ion-text.error {
+    transform: translate(-5%);
+    text-align: center;
+    display: block;
+    margin-left: 15px; 
+  }
+  
+  ion-text {
+    font-size: 15px; 
+    margin-bottom: 4px;
+  }
+  
+  .forgot-password {
+    text-align: right;
+    color: #7e7e7e;
+    font-size: 14px;
+    margin-top: 3px; 
+    margin-bottom: 20px;
+  }
+  
+  .signup-text {
+    margin-top: 18px;
+    color: #7e7e7e;
+    font-size: 14px;
+    margin-bottom: 14%;
+  }
+  
+  .signup-text a {
+    color: #006466;
+    text-decoration: none;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .social-buttons ion-button {
+    --color: #7e7e7e;
+    margin: 0 8px;
+    --border-radius: 50%;
+    --background: transparent;
+    --icon-size: 24px;
+  }
+
+  .digit-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .digit-input {
+    width: 13%;
+    height: 46px;
+    margin-right: 20px;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .digit-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+  }
+  
+  

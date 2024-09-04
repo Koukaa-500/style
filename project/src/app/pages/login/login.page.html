@@ -1,0 +1,123 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <img src="/assets/img/logo.png" alt="STILE Logo" class="logo">
+
+    <h2>Welcome</h2>
+    <p style="margin-bottom: 8px;">Please enter your details to proceed.</p>
+
+    <ion-list lines="none" >
+      <ion-item [ngStyle]="!(emptyEmail || invalidstructureEmail) ? {'margin-bottom': '16px'} : {}">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input  [(ngModel)]="email" placeholder="Email" type="email"></ion-input>
+      </ion-item>
+      <ion-text color="danger" class="error-message" *ngIf="emptyEmail">Empty email !</ion-text>
+      <ion-text color="danger" class="error-message" *ngIf="invalidstructureEmail">Invalid email structure !</ion-text>
+      <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" placeholder="Password"></ion-input>
+        <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+      </ion-item>
+      <ion-text color="danger" class="error-message" *ngIf="emptyPassword">Empty password !</ion-text>
+    </ion-list>
+    <ion-text color="danger" class="error-message" *ngIf="wrongPassword">Wrong Password. Try again or click Forget Password to reset it</ion-text>
+
+    <p class="forgot-password" (click)="openloginmodal()">Forgot Password ?</p>
+
+    <ion-button style="width: 84%; margin: 0 auto; display: block;" (click)="checkForm()">Login</ion-button>
+
+
+    <p class="signup-text">Don't have an account ? <a routerLink='/signup'>Signup</a></p>
+
+    <p>or sign up with</p>
+
+    <div class="social-buttons">
+      <ion-button style="margin-right: -8px;" fill="clear" (click)="loginWithFacebook()">
+        <img src="../../../assets/icon/facebook-circle-logo-png.png" alt="Facebook" style="width: 35px; height: 35px; border-radius: 50%;">
+      </ion-button>
+      <ion-button fill="clear" style="margin-left: -8px;" (click)="loginWithGoogle()">
+        <img src="../../../assets/icon/googlee.png" alt="Google" style="width: 45px; height: 39px; border-radius: 50%;">
+      </ion-button>
+    </div>
+  </div>
+  
+  <ion-modal  id="first-modal-login" [initialBreakpoint]="0.48" [breakpoints]="[0.25, 0.5, 0.75]">
+    <ng-template >
+      <ion-content class="ion-padding">
+        <div class="forgot-password-container">
+          <h2 style="margin-bottom: 35px;margin-top: 20px;">Forgot Password</h2>
+          <p style="margin-bottom: 38px;">Enter your email for the verification process. We will send a 4-digit code to your email.</p>
+          
+          <ion-item [ngStyle]="!(emptyModalEmail || invalidStructureModalEmail) ? {'margin-bottom': '30px'} : {}">
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-input [(ngModel)]="modalemail" placeholder="Email" type="email"></ion-input>
+          </ion-item>
+          <ion-text color="danger" class="error-message" *ngIf="emptyModalEmail" style="margin-bottom: 4px;">Empty email !</ion-text>
+          <ion-text color="danger" class="error-message" *ngIf="invalidStructureModalEmail" style="margin-bottom: 4px;" >Invalid email structure !</ion-text>
+      
+          <ion-button style="width: 84%; margin: 0 auto; display: block;" (click)="sendVerificationCode()">Next</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  
+  <ion-modal id="open-digits-modal" [initialBreakpoint]="0.48" [breakpoints]="[0.25, 0.5, 0.75]">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <div class="forgot-password-container">
+          <h2 style="margin-bottom: 35px; margin-top: 20px;">Enter 4 Digits Code</h2>
+          <p style="margin-bottom: 38px;">Enter the 4 digits code that you received on your email.</p>
+          
+          <div class="digit-inputs" [ngStyle]="!(wrongdigits) ? {'margin-bottom': '30px'} : {}">
+            <input type="text" maxlength="1" (input)="focusNextInput($event, 0)" [(ngModel)]="digits[0]" class="digit-input">
+            <input type="text" maxlength="1" (input)="focusNextInput($event, 1)" [(ngModel)]="digits[1]" class="digit-input">
+            <input type="text" maxlength="1" (input)="focusNextInput($event, 2)" [(ngModel)]="digits[2]" class="digit-input">
+            <input type="text" maxlength="1" (input)="focusNextInput($event, 3)" [(ngModel)]="digits[3]" class="digit-input">
+          </div>
+          <ion-text color="danger" class="error" *ngIf="wrongdigits" style="margin-bottom: 8px; margin-left: 12%; margin-top: 5px;">Invalid digits !</ion-text>
+
+      
+          <ion-button style="width: 84%; margin: 0 auto; display: block;" (click)="gotochangepasswordmodal()">Next</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+ 
+
+  <ion-modal id="open-NewPassword-modal"  [initialBreakpoint]="0.62" [breakpoints]="[0.25, 0.5, 0.75]">
+    <ng-template >
+      <ion-content class="ion-padding">
+        <div class="forgot-password-container">
+          <h2 style="margin-bottom: 35px;margin-top: 20px;">New Password</h2>
+          <p style="margin-bottom: 38px;">Set the new password for your account so you can login and access all the features</p>
+
+          <p style="margin-bottom: 3px;text-align: left;margin-left: 8px;">Enter your new password</p>
+          <ion-item [ngStyle]="!(emptyModalPassword) ? {'margin-bottom': '20px'} : {}">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-input [(ngModel)]="modalpassword" [type]="showPassword ? 'text' : 'password'" placeholder="Password"></ion-input>
+            <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+          </ion-item>
+          <ion-text color="danger" class="error-message" *ngIf="emptyModalPassword">Empty password !</ion-text>
+          <p style="margin-bottom: 3px;text-align: left;margin-left: 8px;">Confirm password</p>
+          <ion-item [ngStyle]="!(emptyModalConfirmPassword || wrongModalPassword ) ? {'margin-bottom': '20px'} : {}">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-input [(ngModel)]="modalConfirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Password"></ion-input>
+            <ion-icon [name]="showConfirmPassword ? 'eye-outline' : 'eye-off-outline'" slot="end" (click)="toggleConfirmPasswordVisibility()"></ion-icon>
+          </ion-item>
+          <ion-text color="danger" class="error-message" *ngIf="wrongModalPassword" >passwords are not the same !</ion-text>
+          <ion-text color="danger" class="error-message" *ngIf="emptyModalConfirmPassword">Empty confirm password !</ion-text>
+          <ion-button style="width: 84%; margin: 0 auto; display: block;" (click)="save()">Save</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  
+
+
+
+</ion-content>

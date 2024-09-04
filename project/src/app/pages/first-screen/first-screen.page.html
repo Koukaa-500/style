@@ -1,0 +1,49 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="/assets/img/Stile.png" alt="Logo" style="height: 24px;">
+    </ion-buttons>
+    <ion-title>
+      STILE
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+<ion-content>
+  <swiper-container
+    #swiper
+   
+    (slidechange)="swiperSlideChanged($event)"
+    [loop]="true"
+    [pagination]="{ clickable: true }"
+    class="mySwiper">
+    
+    <swiper-slide>
+      <div class="slide-content">
+        <h2>Get You Best Clothes</h2>
+        <p>Lorem ipsum is simply dummy text of the printing and typesetting...</p>
+        <img src="/assets/img/image1.png" alt="Get You Best Clothes">
+      </div>
+      <ion-button expand="block" (click)="slideNext()">Next</ion-button>
+    </swiper-slide>
+    
+    <swiper-slide>
+      <div class="slide-content">
+        <h2>Try It From Home</h2>
+        <p>Lorem ipsum is simply dummy text of the printing and typesetting...</p>
+        <img src="/assets/img/image2.png" alt="Try It From Home">
+      </div>
+      <ion-button expand="block" (click)="slideNext()">Next</ion-button>
+    </swiper-slide>
+    
+    <swiper-slide>
+      <div class="slide-content">
+        <h2>Welcome To STILE</h2>
+        <p>Lorem ipsum is simply dummy text of the printing and typesetting...</p>
+        <img src="/assets/img/image3.png" alt="Welcome To STILE">
+      </div>
+      <ion-button expand="block" (click)="goToLogin()">Get Started</ion-button>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

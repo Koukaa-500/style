@@ -1,0 +1,32 @@
+.connection-lost-container {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      font-size: 16px;
+      color: #777;
+    }
+  
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+    }
+  
+    ion-button {
+      margin-top: 20px;
+      --background: #006466;
+      --border-radius: 50px;
+      --padding-start: 20px;
+      --padding-end: 20px;
+      width: 200px;
+      margin-left: 60px;
+      text-transform: capitalize;
+    }
+  }
+  

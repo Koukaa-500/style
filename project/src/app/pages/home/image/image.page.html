@@ -1,0 +1,118 @@
+<ion-card>
+  <div class="card-image-container">
+    <img [src]="photoUrl || '../../../../assets/icon/article.png'" alt="Image" />
+    <ion-icon name="arrow-back" class="arrow-icon" (click)="sendToHome()"></ion-icon>
+  </div>
+</ion-card>
+
+
+<div class="container">
+  <h2>Search For</h2>
+  
+  <div class="button-group">
+    <ion-segment [(ngModel)]="searchType" class="custom-segment">
+      <ion-segment-button
+        value="similar"
+        [ngClass]="{ 'active': searchType === 'similar' }"
+        (click)="searchType = 'similar'"
+      >
+        Similar
+      </ion-segment-button>
+      <ion-segment-button
+        value="complimentary"
+        [ngClass]="{ 'active': searchType === 'complimentary' }"
+        (click)="searchType = 'complimentary'"
+        
+      >
+        Complimentary
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  
+  
+  <ion-radio-group  [(ngModel)]="selectedItem">
+    <div class="options-group">
+      <ion-item lines="none">
+        <ion-label>T-shirt</ion-label>
+        <ion-radio slot="end" value="tshirt"></ion-radio>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Hoodies</ion-label>
+        <ion-radio slot="end" value="hoodies"></ion-radio>
+      </ion-item>
+      
+    </div>
+    <ion-button expand="block" (click)="presentModal()">OK</ion-button>
+  </ion-radio-group>
+
+
+  <ion-modal id="complimentary-modal" [isOpen]="iscomplimentaryOpen" (didDismiss)="closeModal()" [initialBreakpoint]="0.48"
+  [breakpoints]="[0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <div class="share-container">
+        <!-- Similar items from STILE -->
+        <div class="header-container">
+          <h4>Similar items from STILE</h4>
+          
+        </div>
+        
+        
+
+        <div class="scroll-container">
+          <div class="scrollable-content" #scrollableContent>
+            <ion-row>
+              <ion-chip>
+              <ion-col size="auto" *ngFor="let article of articles"> 
+                <ion-card (click)="toggleSelection(article.id)" [ngClass]="{'selected-border': isSelected(article.id)}">
+                  <div class="card-image-container">
+                    <img [src]="article.imageUrl" />
+                  </div>
+                </ion-card>
+                <ion-text>
+                  <a style="color: #00A1A4;">{{ article.brand }}</a><br />
+                  <a style="font-size: 12px;">{{ article.description }}</a><br />
+                  <a style="color: #000000;">{{ article.price }} QAR</a>
+                </ion-text>
+              </ion-col>
+              </ion-chip>
+            </ion-row>
+          </div>
+        </div>
+    
+        <!-- Similar items from My Wardrobe -->
+        <div class="header-container">
+          <h5>Similar items from My Wardrobe</h5>
+          
+        </div>
+        
+        <div class="scroll-container">
+          <div class="scrollable-content" #scrollableContent2>
+            <ion-row>
+              <ion-chip>
+              <ion-col size="auto" *ngFor="let article of articles">
+                <ion-card (click)="toggleSelection(article.id)" [ngClass]="{'selected-border': isSelected(article.id)}">
+                  <div class="card-image-container">
+                    <img [src]="article.imageUrl" />
+                  </div>
+                </ion-card>
+                <ion-text>
+                  <a style="color: #00A1A4;">{{ article.brand }}</a><br />
+                  <a style="font-size: 12px;">{{ article.description }}</a><br />
+                  <a style="color: #000000;">{{ article.price }} QAR</a>
+                </ion-text>
+              </ion-col>
+            </ion-chip>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+    
+  </ng-template>
+</ion-modal>
+
+
+
+  

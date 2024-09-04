@@ -1,0 +1,284 @@
+.arrow-icon {
+    position: absolute;
+    top: 40px;
+    /* Adjust as needed */
+    right: 350px;
+    /* Adjust as needed */
+    font-size: 24px;
+    /* Adjust size as needed */
+    color: #000000;
+}
+ion-card {
+    height: 70vh;
+    /* Set the card height to 40% of the viewport height */
+    border-radius: 30px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    margin: 0;
+    /* Ensure no margin around the card */
+    width: 100%;
+    /* Full width of the container */
+
+}
+
+.card-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Full height of the card */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Center content within the container */
+}
+
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    /* Cover the card area while maintaining aspect ratio */
+    display: block;
+    /* Remove extra space below the image */
+}
+
+.container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .container h2 {
+    
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+  }
+  
+  .custom-segment {
+    background-color: transparent;
+    border: 2px solid #008080; /* Large border surrounding both buttons */
+    border-radius: 25px;
+    
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  
+    ion-segment-button {
+      flex: 1;
+      
+      text-align: center;
+      font-size: 14px;
+      color: #008080; /* Default text color */
+      background-color: transparent;
+      border: none;
+      border-radius: 25px; /* Slightly smaller radius for individual buttons */
+      transition: background-color 0.3s ease, color 0.3s ease;
+      text-transform: capitalize;
+      z-index: 1; /* Ensure buttons appear above the background */
+      
+      &::part(indicator) {
+        display: none; /* Remove the blue line under the active button */
+      }
+  
+      &.active {
+        background-color: #006466; /* Dark teal background color */
+        color: #ffffff; /* White text color */
+        z-index: 2; /* Bring active button to the front */
+        margin-right: -10px; /* Negative margin to overlap the next button */
+      }
+  
+      &:first-of-type.active {
+        margin-left: 0;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        
+      }
+  
+      &:last-of-type.active {
+        margin-right: 0;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        
+      }
+    }
+  
+    ion-segment-button:not(.active):hover {
+      background-color: #f0f0f0;
+      color: #008080;
+    }
+  }
+  
+  
+
+  
+  .options-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    
+  }
+  
+  ion-item {
+    --background: transparent;
+    --inner-padding-end: 0;
+    
+  }
+  
+  ion-radio {
+    --color-checked: #006466;
+  }
+  
+  ion-button {
+    --background: #006466;
+    --border-radius: 25px;
+    height: 40px;
+    margin-top: 20px;
+  }
+  ion-label{
+    width: 5rem;
+  }
+
+  // .share-container {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   gap: 20px;
+  
+  //   ion-row {
+  //     display: flex;
+  //     flex-wrap: nowrap; /* Ensure the row doesn’t wrap to a new line */
+  //     overflow-x: auto; /* Enable horizontal scrolling */
+  //     gap: 0; /* Remove any default gap between columns */
+  //     margin: 0; /* Remove any margin applied by default */
+  //     padding: 0; /* Remove any padding applied by default */
+  //   }
+  
+  //   ion-col {
+  //     padding: 0; /* Remove padding from ion-col */
+  //   }
+  
+  //   ion-card {
+  //     height: 7rem;
+  //     width: 5rem;
+  //     border-radius: 16px;
+  //     overflow: hidden;
+  //     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  //     transition: transform 0.3s ease;
+  //     margin-right: 0; /* Remove margin to eliminate extra space between images */
+  //     &:hover {
+  //       transform: translateY(-5px);
+  //     }
+  //   }
+  
+  //   img {
+  //     width: 100%;
+  //     height: auto;
+  //     border-radius: 8px;
+  //   }
+  // }
+  
+  
+  
+  .selected-border {
+    border: 2px solid #00A1A4; /* Highlight selected item */
+  }
+  
+  
+  
+  .share-container {
+    margin: 0 0 0 5px;
+    border-radius: 20px;
+    scroll-behavior: smooth;
+     ion-chip{
+      background: transparent;
+     }
+      .header-container {
+      display: flex; /* Align items in a row */
+      align-items: center; /* Vertically center items */
+      justify-content: space-between; /* Space between items */
+      margin-bottom: 10px; /* Add margin below the container if needed */
+    }
+    .header-container ion-button:first-of-type {
+      left: 10px; /* Adjust as needed */
+    }
+    
+    .header-container ion-button:last-of-type {
+      right: 10px; /* Adjust as needed */
+    }
+  
+    h4 {
+      margin: 0; /* Remove default margin */
+    }
+    h5{
+      width: 70vw;
+      margin:10px 0 0 0;
+    }
+    ion-button {
+      margin-left: auto; /* Push the button to the right edge */
+      --padding-start: 0; /* Remove padding on the start side if needed */
+      --padding-end: 0; /* Remove padding on the end side if needed */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 3rem;
+      height: 3rem;
+      --background: #F8F8F8;
+      color: #006466;
+      border-radius: 50%;
+    }
+  
+    ion-icon {
+      font-size: 1.2rem; /* Adjust icon size if needed */
+    }
+  
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;/* Hide vertical scrollbar */
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory; /* Enable snap scrolling */
+      padding: 10px 0; /* Add vertical padding if needed */
+      height: 12rem; /* Fixed height for the row */
+      align-items: center; /* Center items vertically */
+      white-space: nowrap;
+      scroll-snap-type: x mandatory; /* Enable snap scrolling */
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+     
+    }
+  
+    ion-card {
+      height: 7rem;
+      width: 5rem;
+      border-radius: 30px;
+      
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    
+      scroll-snap-align: start; /* Snap to the start of each card */
+      
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  
+    ion-avatar {
+      margin: 0 auto;
+    }
+  
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+  
+  

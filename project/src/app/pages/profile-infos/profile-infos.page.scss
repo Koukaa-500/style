@@ -1,0 +1,84 @@
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8%;
+  
+    .profile-avatar {
+      width: 127px;
+      height: 127px;
+    }
+  
+    h2 {
+        margin-top: 10px;
+        font-size: 17px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+  
+    .edit-button {
+      
+      margin-left: 24%;
+      ion-icon {
+        color: #006466;
+        background-color: rgba(186, 180, 180, 0.6);
+        font-size: 29px;
+        border-radius: 20%;
+      }
+      
+    }
+}
+
+.profile-list {
+    margin-top: 19%;
+    padding: 0 16px;
+  
+    ion-item {
+      --background: rgba(128, 128, 128, 0.1);
+      border-radius: 30px;
+      
+      ion-icon {
+        color: #006466;
+      }
+      ion-input {
+        font-size: 16px;
+        color: #333;
+      }
+    }
+  }
+  
+  .gender-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10% 0;
+  
+    ion-item {
+      --background: rgba(128, 128, 128, 0.1);
+      border-radius: 30px;
+      ion-radio {
+        --color-checked: #006466; 
+        --color: #006466;
+        
+      }
+      ion-label {
+        font-size: 16px;
+        color: #333;
+       
+      }
+    }
+  }
+
+  .updateButton {
+    --border-radius: 20px;
+    --background: #006466;
+    height: 43px;
+
+  }
+  .radio-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }

@@ -1,0 +1,289 @@
+ 
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-title>
+    <img src="../../../assets/icon/icon-background.png" alt="Logo" class="logo">
+  </ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="openmodalhome()">
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-toolbar>
+  <ion-searchbar [(ngModel)]="searchText" placeholder="Search" class="custom-searchbar">
+    
+    <ion-icon name="close-circle" class="clear-icon" *ngIf="searchText" (click)="clearSearch()"></ion-icon>
+  </ion-searchbar>
+  
+  <ion-buttons slot="end">
+    <ion-button >
+      <img src="../../../assets/icon/camera.png" class="camera-icon" id="camera-modal-trigger" (click)="presentCameraModal()">
+    </ion-button>
+    <ion-button id="filter-modal-trigger" (click)="presentModal()">
+      <ion-icon name="options-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-list *ngIf="searchHistory.length > 0 && showHistory" class="search-history-list">
+  <ion-item *ngFor="let search of searchHistory" (click)="selectSearch(search)">
+    <img src="../../../assets/icon/search.png" alt="Search Icon" class="search-icon">
+    <span class="search-text">{{ search }}</span>
+  </ion-item>
+</ion-list>
+
+
+<ion-list *ngIf="searchHistory.length > 0 || showHistory" class="search-history-list">
+  <ion-item *ngFor="let search of searchHistory" (click)="selectSearch(search)">
+    <img src="../../../assets/icon/search.png" alt="Search Icon" class="search-icon">
+    <span class="search-text">{{ search }}</span>
+  </ion-item>
+</ion-list>
+
+
+<ion-buttons class="Three-buttons">
+  <ion-button style="margin-left:1.1rem;width: 140px;" [ngClass]="{'active-button': activeButton === 'topSearches'}"
+    (click)="setActive('topSearches')" (click)="filterByCategory('topSearches')">
+    Top Searches
+  </ion-button>
+  <ion-button style="margin-left: 0.5rem; width: 100px;" [ngClass]="{'active-button': activeButton === 'trending'}"
+    (click)="setActive('trending')" (click)="filterByCategory('trending')">
+    Trending
+  </ion-button>
+  <ion-button style="margin-left: 0.5rem;" [ngClass]="{'active-button': activeButton === 'sale'}"
+    (click)="setActive('sale')" (click)="filterByCategory('sale')">
+    Sale
+  </ion-button>
+</ion-buttons>
+
+
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let article of filteredArticles | search: searchText">
+        <ion-item >
+          <app-article (click)="navigateToDetails(article.id)" [article]="article"></app-article>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal id="first-modal-home" [initialBreakpoint]="0.52" [breakpoints]="[0.25, 0.5, 0.75]">
+    <ng-template >
+      <ion-content >
+        <div class="hello-user">
+          <p class="text"> Hello {{user.name}}</p>
+          <ion-avatar class="profile-avatar">
+            <img [src]="user.profilePic" alt="Profile Picture" />
+          </ion-avatar>
+        </div>
+
+        <ion-list lines="none" >
+          <ion-item >
+            <ion-icon name="grid-outline"></ion-icon>
+            <ion-label>Wardrobe</ion-label>
+          </ion-item>
+          <ion-item (click)="goToProfile()" >
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-label>Profile</ion-label>
+          </ion-item>
+          <ion-item (click)="goToContactUs()">
+            <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+            <ion-label>Contact Us</ion-label>
+          </ion-item>
+          <ion-item (click)="goToAboutUs()">
+            <ion-icon name="information-outline"></ion-icon>
+            <ion-label>About Us</ion-label>
+          </ion-item>
+          <ion-item (click)="logout()" >
+            <ion-icon name="log-out-outline" ></ion-icon>
+            <ion-label>Log Out</ion-label>
+          </ion-item>
+        </ion-list>
+
+       
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal id="logout" [initialBreakpoint]="0.22" [breakpoints]="[0.25, 0.5, 0.75]">
+    <ng-template >
+      <ion-content >
+       <div class="logoutmodaltextcontainer">
+        <p class="logoutmodaltext">Are you sure  to log out ?</p>
+       </div>
+       <div class="modallogoutbuttons">
+        <ion-button class="buttons button1" style="width: 25%; margin: 0 auto; display: block;margin-right: 20px;background-color: azure;" (click)="logoutcancel()">Cancel</ion-button>
+        <ion-button class="buttons button2" style="width: 25%; margin: 0 auto; display: block;margin-left: 20px;" (click)="logoutconfirm()">Yes</ion-button>
+       </div>
+
+       
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  
+  
+</ion-content>
+
+
+<ion-footer>
+  <div class="footer-container">
+    <ion-row>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'home'" (click)="clearFilter()">
+          <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'collections'" (click)="setActiveIcon('collections')" (click)="sendToCollection()">
+          <ion-icon slot="icon-only" name="grid-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'favorites'" (click)="goToFavorites()">
+          <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="clear" [class.active]="activeIcon === 'profile'" (click)="goToProfile()">
+          <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-footer>
+
+
+<ion-modal id="filter-modal" [isOpen]="isModalOpen" (didDismiss)="closeModal()" [initialBreakpoint]="0.98"
+  [breakpoints]="[0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <div class="filter-container">
+        <h2>Filter</h2>
+
+        <!-- Price Range -->
+        <div>
+          <h3>Price Range</h3>
+          <ion-range
+            min="0"
+            max="200"
+            step="10"
+            [(ngModel)]="selectedPrice"
+            (ionChange)="filterRnage()"
+            dualKnobs="false"
+          >
+          </ion-range>
+          <div class="price-labels">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="ion-text">10 QAR</ion-col>
+                <ion-col class="ion-text">50 QAR</ion-col>
+                <ion-col class="ion-text">100 QAR</ion-col>
+                <ion-col class="ion-text">150 QAR</ion-col>
+                <ion-col class="ion-text">200 QAR</ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+        
+        <!-- Display a message when no items are found -->
+        <div *ngIf="filteredArticles.length === 0" class="no-items">
+          <p>No items available in the selected price range.</p>
+        </div>
+
+
+        <!-- Brand -->
+        <h3>Brand</h3>
+        <div class="filter">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto" *ngFor="let brand of ['ALL', 'ZARA', 'GUCCI', 'BERSHKA', 'MANGO']">
+                <ion-button fill="solid" [ngClass]="{'active-button': selectedBrand === brand}"
+                  (click)="filterByBrand(brand)">
+                  {{ brand }}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+
+
+
+        <!-- Gender -->
+        <h3>Gender</h3>
+        <div class="filter">
+          
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto" *ngFor="let gender of genders">
+                <ion-button fill="solid" [ngClass]="{'active-button': selectedGender === gender}"
+                  (click)="filterByGender(gender)">
+                  {{ gender }}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <!-- Size Filter -->
+        <h3>Size</h3>
+        <div class="filter">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto" *ngFor="let size of sizes">
+                <ion-button fill="solid" [ngClass]="{'active-button': selectedSize === size}"
+                  (click)="filterBySize(size)">
+                  {{ size }}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <!-- Shipping Date -->
+        <h3>Shipping Date</h3>
+        <div class="filter">
+          <ion-grid>
+            <ion-row>
+              <ion-chip>1 Day</ion-chip>
+              <ion-chip color="secondary">3 Days</ion-chip>
+              <ion-chip>5 Days</ion-chip>
+              <ion-chip>7 Days</ion-chip>
+              <ion-chip>14 Days</ion-chip>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal id="camera-modal" [isOpen]="isCameraOpen" (didDismiss)="closeModal()"  [initialBreakpoint]="0.4"
+  [breakpoints]="[0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <div class="camera-container">
+        <ion-row>
+          <h1>Tap To Get Started!</h1>
+          <ion-buttons>
+            <ion-button (click)="takePicture()">
+              <img src="../../../assets/icon/camera1.png" class="camera-icon" >
+              Camera
+            </ion-button>
+            <ion-button (click)="sendToWardrobe()">
+              <img src="../../../assets/icon/wordrobeicon.png" class="camera-icon">
+              Wardrobe
+            </ion-button>
+          </ion-buttons>
+        </ion-row>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

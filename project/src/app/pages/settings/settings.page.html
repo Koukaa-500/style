@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;margin-left: -30px;">Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="gotopasswordsettings()">
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-label>Password Settings</ion-label>
+    </ion-item>
+    <ion-item (click)="delete()">
+      <ion-icon name="person-remove-outline" slot="start"></ion-icon>
+      <ion-label>Delete Account</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-modal id="delete" [initialBreakpoint]="0.22" [breakpoints]="[0.25, 0.5, 0.75]">
+    <ng-template >
+      <ion-content >
+       <div class="logoutmodaltextcontainer">
+        <p class="logoutmodaltext">Are you sure want to delete this account ?</p>
+       </div>
+       <div class="modallogoutbuttons">
+        <ion-button class="buttons button1" style="width: 25%; margin: 0 auto; display: block;margin-right: 20px;background-color: azure;" (click)="deletecancel()">Cancel</ion-button>
+        <ion-button class="buttons button2" style="width: 25%; margin: 0 auto; display: block;margin-left: 20px;" (click)="deleteconfirm()">Yes</ion-button>
+       </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

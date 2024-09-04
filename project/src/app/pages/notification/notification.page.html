@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;margin-left: -30px;">Notification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let notification of notifications">
+      <ion-label>{{notification.name}}</ion-label>
+      <ion-toggle
+        slot="end"
+        [checked]="notification.checked"
+        (ionChange)="toggleNotification(notification)"
+        [ngClass]="{'checked-toggle': notification.checked, 'unchecked-toggle': !notification.checked}"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

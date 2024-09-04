@@ -1,0 +1,90 @@
+ion-card {
+    height: 9rem;
+    width: 21rem;
+    border-radius: 30px;
+    background: #f6f6f6; /* Set background color similar to the card */
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden; /* Ensure content stays within the card boundaries */
+  }
+  
+  .card-content {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    width: 100%;
+  }
+  
+  .card-image-container {
+    width: 30%; /* Set width for the image container */
+    height: 7rem;
+    border-radius: 15px; /* Rounded corners for the image */
+    overflow: hidden;
+  }
+  
+  .card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .card-details {
+    margin-left: 1rem;
+    flex-grow: 1;
+  }
+  
+  .brand {
+    font-size: 16px;
+    color: #00A1A4;
+    
+  }
+  
+  .description {
+    font-size: 12px;
+    color: #65676E;
+    width: 8rem;
+  }
+  
+  .price-container {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .price {
+    font-size: 18px;
+    color: #000000;
+    
+  }
+  
+  .old-price {
+    font-size: 12px;
+    color: #999999;
+    
+    margin-left: 0.5rem;
+  }
+  
+  .heart-icon {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    font-size: 30px;
+    color: #00A1A4;
+    font-weight: bold;
+  }
+  
+  .lock-icon {
+    position: absolute;
+    bottom: 30px;
+    right: 35px;
+    width: 30px; 
+    height: 30px; 
+    color: #006466;
+}
+
+
+  
